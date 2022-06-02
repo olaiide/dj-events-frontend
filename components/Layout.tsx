@@ -1,8 +1,10 @@
 import { FC, ReactNode } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Header from "./Header";
 import Footer from "./Footer";
-import styles from "../styles/Layout.module.css";
+import styles from "@/styles/Layout.module.css";
+import Showcase from "./Showcase";
 interface LayoutTypes {
   title?: string;
   keywords?: string;
@@ -15,6 +17,7 @@ const Layout: FC<LayoutTypes> = ({
   description,
   children,
 }) => {
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -23,6 +26,7 @@ const Layout: FC<LayoutTypes> = ({
         <meta name='keywords' content={keywords} />
       </Head>
       <Header />
+      {router.pathname === "/" && <Showcase />}
       <div className={styles.container}>{children}</div>
       <Footer />
     </div>
