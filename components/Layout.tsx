@@ -1,22 +1,17 @@
-import { FC, ReactNode } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { LayoutTypes } from "../types/layout";
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "@/styles/Layout.module.css";
 import Showcase from "./Showcase";
-interface LayoutTypes {
-  title?: string;
-  keywords?: string;
-  description?: string;
-  children: ReactNode;
-}
-const Layout: FC<LayoutTypes> = ({
+
+const Layout = ({
   title,
   keywords,
   description,
   children,
-}) => {
+} : LayoutTypes) => {
   const router = useRouter();
   return (
     <div>
