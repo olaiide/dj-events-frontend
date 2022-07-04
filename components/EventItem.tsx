@@ -25,7 +25,7 @@ const EventItem : FC<EventProps> = ({ evt }) => {
         <h3>{evt.attributes.name}</h3>
       </div>
       <div className={styles.link}>
-        <Link href={`/events/${evt.attributes.slug}`}>
+        <Link href={`/events/${evt.id}`}>
             <a className='btn'>Details</a>
         </Link>
       </div>

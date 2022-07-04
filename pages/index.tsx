@@ -30,9 +30,10 @@ const Home : NextPage<eventsProps> = ({ events }) => {
 export default Home;
 export const getStaticProps = async () => {
    
-  const events = await fetch(`${API_URL}/api/events?pagination[limit]=2&populate=*`)
+  const events = await fetch(`${API_URL}/api/events?pagination[limit]=3&populate=*`)
     .then((response) => response.json())
     .then((data) => data.data);
+   
   return {
     props: { events  },
     revalidate: 1,

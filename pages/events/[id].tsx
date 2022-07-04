@@ -14,16 +14,17 @@ const EventPage: FC<EventsProps> = ({ evt }) => {
   const deleteEventHandler = () => {
     console.log("deleted");
   };
+  console.log(evt)
   return (
     <Layout>
       <div className={styles.event}>
         <div className={styles.controls}>
-          <Link href={`/events/edit/${evt.id}`}>
+          
             <a>
               <FaPencilAlt />
               Edit event
             </a>
-          </Link>
+          
           <a href='#' onClick={deleteEventHandler} className={styles.delete}>
             <FaTimes /> Delete Event
           </a>
@@ -51,23 +52,24 @@ const EventPage: FC<EventsProps> = ({ evt }) => {
         <Link href='/events'>
           <a className={styles.back}>{" < "} Go Back</a>
         </Link>
-      </div>
+      </div> 
     </Layout>
   );
 };
 
 export default EventPage;
 interface SlugProps {
-  query: { slug: string };
+  query: { id : number };
 }
 export const getServerSideProps = async ({ query }: SlugProps) => {
-  const { slug } = query;
-  const res = await fetch(`${API_URL}/api/events/${slug}`);
-  const events = await res.json();
-
+  console.log(query)
+const { id } = query;
+  const evt = await fetch(`${API_URL}/api/events/${id}?&populate=*`).then((response) => response.json())
+  .then((data) => data.data);
+console.log(evt)
   return {
     props: {
-      evt: events[0],
+       evt,
     },
   };
 };
